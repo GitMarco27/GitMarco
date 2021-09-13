@@ -1,2 +1,2 @@
-import energy
-import utils
+from GitMarco import energy
+from GitMarco import utils
