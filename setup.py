@@ -9,7 +9,7 @@ setup(
     author='Marco Sanguineti',  # Type in your name
     author_email='marco.sanguineti.info@gmail.com',  # Type in your E-Mail
     url='https://github.com/GitMarco27/GitMarco',  # Provide either the link to your github or to your website
-    download_url='https://github.com/GitMarco27/GitMarco/archive/refs/tags/v0.0.1.tar.gz',  # I explain this later on
+    download_url='https://github.com/GitMarco27/GitMarco/archive/refs/tags/v0.0.2.tar.gz',  # I explain this later on
     keywords=['DeepLearning', 'DataScience', 'Tensorflow'],  # Keywords that define your package best
     install_requires=[  # I get to this in a second
         'pysolar',
