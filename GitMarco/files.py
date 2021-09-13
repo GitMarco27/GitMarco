@@ -17,7 +17,7 @@ def zip_folder(path: str, name: str) -> None:
             for file in files:
                 ziph.write(os.path.join(root, file),
                            os.path.relpath(os.path.join(root, file),
-                                           os.path.join(new_path, '../..')))
+                                           os.path.join(new_path, '..')))
 
     zipf = zipfile.ZipFile(f'{name}.zip', 'w', zipfile.ZIP_DEFLATED)
     zipdir(path, zipf)

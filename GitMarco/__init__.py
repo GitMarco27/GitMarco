@@ -1,2 +1,1 @@
-from GitMarco.energy import solar
-from GitMarco.utils import files
+from GitMarco import energy, files
