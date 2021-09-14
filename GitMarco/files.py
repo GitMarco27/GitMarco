@@ -1,5 +1,6 @@
 import os
 import zipfile
+import logging
 
 
 def zip_folder(path: str, name: str) -> None:
@@ -10,7 +11,6 @@ def zip_folder(path: str, name: str) -> None:
 
     Zip a folder and its content
     """
-
     def zipdir(new_path, ziph):
         # ziph is zipfile handle
         for root, dirs, files in os.walk(new_path):
@@ -22,6 +22,7 @@ def zip_folder(path: str, name: str) -> None:
     zipf = zipfile.ZipFile(f'{name}.zip', 'w', zipfile.ZIP_DEFLATED)
     zipdir(path, zipf)
     zipf.close()
+    logging.info(f'Folder {path} correctly zipped to {os.path.join(os.getcwd(), name)}')
     return None
 
 
@@ -36,3 +37,4 @@ def unzip_folder(path_to_zip_file: str,
     """
     with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
         zip_ref.extractall(directory_to_extract_to)
+    logging.info(f'Folder {path_to_zip_file} correctly unzipped to {directory_to_extract_to}')
