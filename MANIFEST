@@ -2,5 +2,7 @@
 setup.cfg
 setup.py
 GitMarco/__init__.py
-GitMarco/energy.py
-GitMarco/files.py
+GitMarco/energy/__init__.py
+GitMarco/energy/solar.py
+GitMarco/utils/__init__.py
+GitMarco/utils/files.py
