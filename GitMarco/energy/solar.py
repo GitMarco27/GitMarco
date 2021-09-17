@@ -1,6 +1,9 @@
 import datetime
 import matplotlib.pyplot as plt
 import pysolar
+
+from GitMarco.utils.basic import assertion_test
+
 plt.style.use('seaborn-darkgrid')
 
 
@@ -25,20 +28,32 @@ class DirectRadiation(object):
 
         DirectRadiation class
         """
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude = float(latitude)
+        self.longitude = float(longitude)
         self.nmin = nmin
         self.start_year = start_year
         self.start_day = start_day
         self.start_month = start_month
         self.actual_timezone = timezone
-        self.surface = surface
+        self.surface = float(surface)
+
+        self.testing()
 
         # Dates, altitudes, radiations
         self.dates, self.altitudes_deg, self.radiations = list(), list(), list()
 
         self.timezone = datetime.timezone(datetime.timedelta(hours=self.actual_timezone))
         self.start = datetime.datetime(self.start_year, self.start_month, self.start_day, tzinfo=self.timezone)
+
+    def testing(self):
+        assertion_test(self.latitude, float, 'Latitude')
+        assertion_test(self.longitude, float, 'Longitude')
+        assertion_test(self.nmin, int, 'Number of minutes')
+        assertion_test(self.start_year, int, 'Starting year')
+        assertion_test(self.start_day, int, 'Starting day')
+        assertion_test(self.start_month, int, 'Starting month')
+        assertion_test(self.actual_timezone, int, 'Actual timezone')
+        assertion_test(self.surface, float, 'Starting year')
 
     def estimate_direct_radiation(self):
         # Iterating for hours in nhr
