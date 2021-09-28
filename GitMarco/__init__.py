@@ -1,4 +1,4 @@
-from GitMarco import energy, utils
+from GitMarco import energy, utils, tf
 import logging
 
 logging.basicConfig(format='GitMarco - %(levelname)s: %(message)s',
