@@ -4,5 +4,8 @@ setup.py
 GitMarco/__init__.py
 GitMarco/energy/__init__.py
 GitMarco/energy/solar.py
+GitMarco/tf/__init__.py
+GitMarco/tf/utils.py
 GitMarco/utils/__init__.py
+GitMarco/utils/basic.py
 GitMarco/utils/files.py

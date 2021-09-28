@@ -2,8 +2,8 @@ from distutils.core import setup
 
 setup(
     name='GitMarco',  # How you named your package folder (MyLib)
-    packages=['GitMarco', 'GitMarco.energy', 'GitMarco.utils'],  # Chose the same as "name"
-    version='V0.0.2',  # Start with a small number and increase it with every change you make
+    packages=['GitMarco', 'GitMarco.energy', 'GitMarco.utils', 'GitMarco.tf'],  # Chose the same as "name"
+    version='V0.0.3',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='An Engineering, Data Science and Deep Learning python package',  # Give a short description about your library
     author='Marco Sanguineti',  # Type in your name
@@ -14,7 +14,8 @@ setup(
     install_requires=[  # I get to this in a second
         'pysolar',
         'matplotlib',
-        'numpy'
+        'numpy',
+        'tensorflow'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
