@@ -15,8 +15,7 @@ setup(
         'pysolar',
         'matplotlib',
         'numpy',
-        'tensorflow-macos',
-        'tensorflow-metal'
+        'tensorflow',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
