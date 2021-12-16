@@ -2,7 +2,11 @@ from distutils.core import setup
 
 setup(
     name='GitMarco',  # How you named your package folder (MyLib)
-    packages=['GitMarco', 'GitMarco.energy', 'GitMarco.utils', 'GitMarco.tf'],  # Chose the same as "name"
+    packages=['GitMarco',
+              'GitMarco.energy',
+              'GitMarco.utils',
+              'GitMarco.tf',
+              'GitMarco.graphics'],  # Chose the same as "name"
     version='V0.0.6',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='An Engineering, Data Science and Deep Learning python package',  # Give a short description about your library
@@ -16,6 +20,7 @@ setup(
         'matplotlib',
         'numpy',
         'tensorflow',
+        'plotly',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
