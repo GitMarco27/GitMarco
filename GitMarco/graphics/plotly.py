@@ -40,7 +40,7 @@ class Scatter3D(object):
 
         Create the 3d scatter plot
         """
-        color = color.reshape(-1, 1)
+        color = color.reshape(-1, 1) if color is not None else color
         fig = go.Figure(data=[go.Scatter3d(x=self.x, y=self.y, z=self.z,
                                            mode='markers',
                                            marker=dict(size=5,
