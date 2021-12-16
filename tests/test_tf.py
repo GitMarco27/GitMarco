@@ -1,4 +1,4 @@
-from GitMarco.tf import utils, metrics, models
+from GitMarco.tf import utils, metrics, basic
 import numpy as np
 
 
@@ -13,7 +13,7 @@ def test_r_squared():
 
 
 def test_basic_dense_model():
-    model = models.basic_dense_model(input_shape=(10, ),
-                                     output_shape=1,
-                                     optimizer='adadelta')
+    model = basic.basic_dense_model(input_shape=(10,),
+                                    output_shape=1,
+                                    optimizer='adadelta')
     model.summary()
