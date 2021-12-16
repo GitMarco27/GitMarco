@@ -3,7 +3,8 @@ import numpy as np
 
 
 class Scatter3D(object):
-    def __init__(self, x: np.ndarray,
+    def __init__(self,
+                 x: np.ndarray,
                  y: np.ndarray,
                  z: np.ndarray, ):
         """

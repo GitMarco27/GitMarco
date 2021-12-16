@@ -6,7 +6,9 @@ setup(
               'GitMarco.energy',
               'GitMarco.utils',
               'GitMarco.tf',
-              'GitMarco.graphics'],  # Chose the same as "name"
+              'GitMarco.graphics',
+              'GitMarco.torch',
+              'GitMarco.notebooks'],  # Chose the same as "name"
     version='V0.0.6',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='An Engineering, Data Science and Deep Learning python package',  # Give a short description about your library
@@ -21,6 +23,9 @@ setup(
         'numpy',
         'tensorflow',
         'plotly',
+        'torch',
+        'torchvision',
+        'torchaudio'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
