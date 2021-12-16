@@ -21,6 +21,11 @@ def print_fancy(txt: str,
 
 
 def clear():
+    """
+    :return: None
+
+    Cleara python console with a system call
+    """
     import os
     command = 'clear'
     if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
