@@ -18,3 +18,11 @@ class bcolors:
 def print_fancy(txt: str,
                 c=bcolors.HEADER):
     print(f'{c}{txt}{bcolors.ENDC}')
+
+
+def clear():
+    import os
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
