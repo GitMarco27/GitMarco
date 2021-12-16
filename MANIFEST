@@ -4,9 +4,17 @@ setup.py
 GitMarco/__init__.py
 GitMarco/energy/__init__.py
 GitMarco/energy/solar.py
+GitMarco/graphics/__init__.py
+GitMarco/graphics/matplotlib.py
+GitMarco/graphics/plotly.py
+GitMarco/notebooks/__init__.py
 GitMarco/tf/__init__.py
+GitMarco/tf/basic.py
 GitMarco/tf/metrics.py
 GitMarco/tf/utils.py
+GitMarco/torch/__init__.py
+GitMarco/torch/losses.py
+GitMarco/torch/utils.py
 GitMarco/utils/__init__.py
 GitMarco/utils/basic.py
 GitMarco/utils/files.py
