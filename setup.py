@@ -25,7 +25,8 @@ setup(
         'plotly',
         'torch',
         'torchvision',
-        'torchaudio'
+        'torchaudio',
+        'sklearn'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
