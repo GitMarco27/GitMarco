@@ -8,6 +8,8 @@ GitMarco/graphics/__init__.py
 GitMarco/graphics/matplotlib.py
 GitMarco/graphics/plotly.py
 GitMarco/notebooks/__init__.py
+GitMarco/statistics/__init__.py
+GitMarco/statistics/metrics.py
 GitMarco/tf/__init__.py
 GitMarco/tf/basic.py
 GitMarco/tf/metrics.py
