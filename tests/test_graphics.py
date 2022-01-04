@@ -20,17 +20,17 @@ def test_validation_plot():
 
 def test_plot_2d():
     x = y = np.random.rand(1000)
-    plot_2d(x, y, show=True, xlim=(-0.5, 1.5),
+    plot_2d(x, y, show=False, xlim=(-0.5, 1.5),
             line_width=3)
     x = [np.random.rand(1000), np.random.rand(1000)]
     y = [x[0]-1, x[1]+1]
-    plot_2d(x, y, show=True,
+    plot_2d(x, y, show=False,
             line_width=3, label=['1', '2'])
 
 
 def test_scatter_2d():
     x = y = np.random.rand(1000)
-    scatter_2d(x, y, show=True, xlim=(-0.5, 1.5))
+    scatter_2d(x, y, show=False, xlim=(-0.5, 1.5))
     x = [np.random.rand(1000), np.random.rand(1000)]
     y = [x[0]-1, x[1]+1]
-    scatter_2d(x, y, show=True, label=['1', '2'])
+    scatter_2d(x, y, show=False, label=['1', '2'])
