@@ -1,0 +1,11 @@
+numpy
+gitmarco
+matplotlib
+pysolar
+plotly
+sklearn
+scikit-learn
+tensorflow
+torch
+torchvision
+torchaudio
