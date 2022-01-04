@@ -1,6 +1,6 @@
 import numpy as np
 from GitMarco.graphics.plotly import Scatter3D
-from GitMarco.graphics.matplotlib import validation_plot
+from GitMarco.graphics.matplotlib import validation_plot, plot_2d, scatter_2d
 
 
 def test_scatter_3d():
@@ -17,3 +17,20 @@ def test_validation_plot():
     pred = np.random.rand(100)
     fig = validation_plot(true, pred, show=False)
 
+
+def test_plot_2d():
+    x = y = np.random.rand(1000)
+    plot_2d(x, y, show=True, xlim=(-0.5, 1.5),
+            line_width=3)
+    x = [np.random.rand(1000), np.random.rand(1000)]
+    y = [x[0]-1, x[1]+1]
+    plot_2d(x, y, show=True,
+            line_width=3, label=['1', '2'])
+
+
+def test_scatter_2d():
+    x = y = np.random.rand(1000)
+    scatter_2d(x, y, show=True, xlim=(-0.5, 1.5))
+    x = [np.random.rand(1000), np.random.rand(1000)]
+    y = [x[0]-1, x[1]+1]
+    scatter_2d(x, y, show=True, label=['1', '2'])

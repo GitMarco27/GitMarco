@@ -14,9 +14,8 @@ def validation_plot(
         marker_color: str = 'b',
         edge_color: str = 'k',
         line_color: str = 'k',
-
 ):
-    true = true.reshape(-1 , 1) if isinstance(true, np.ndarray) else None
+    true = true.reshape(-1, 1) if isinstance(true, np.ndarray) else None
     pred = pred.reshape(-1, 1) if isinstance(pred, np.ndarray) else None
     plt.style.use('seaborn-darkgrid')
     fig, ax = plt.subplots(figsize=size)
@@ -31,4 +30,101 @@ def validation_plot(
     ax.set_ylabel(ylabel)
     plt.grid('both')
     plt.show() if show else None
-    return fig
+    return fig, ax
+
+
+def plot_2d(
+        x,
+        y,
+        label: str or list = '',
+        size: tuple = (6, 6),
+        title: str = '',
+        show: bool = False,
+        xlabel: str = 'x',
+        ylabel: str = 'y',
+        line_color: str = 'k',
+        line_width: int = 5,
+        xlim: tuple = None,
+        ylim: tuple = None,
+
+):
+    plt.style.use('seaborn-darkgrid')
+    fig, ax = plt.subplots(figsize=size)
+
+    if isinstance(x, list) and isinstance(y, list) and isinstance(label, list):
+        for i in range(len(x)):
+            plt.plot(x[i],
+                     y[i],
+                     # line_color=line_color,
+                     linewidth=line_width,
+                     label=label[i]
+                     )
+    else:
+        plt.plot(x,
+                 y,
+                 c=line_color,
+                 linewidth=line_width,
+                 label=label
+                 )
+
+    plt.legend()
+    ax.set_title(f'{title}')
+    if xlim is not None:
+        ax.set_xlim(xlim)
+    if ylim is not None:
+        ax.set_ylim(ylim)
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    plt.show() if show else None
+    return fig, ax
+
+
+def scatter_2d(
+        x,
+        y,
+        label: str or list = '',
+        size: tuple = (6, 6),
+        title: str = '',
+        show: bool = False,
+        xlabel: str = 'x',
+        ylabel: str = 'y',
+        marker: str = '^',
+        marker_color: str = 'b',
+        edge_color: str = 'k',
+        xlim: tuple = None,
+        ylim: tuple = None,
+
+):
+    plt.style.use('seaborn-darkgrid')
+    fig, ax = plt.subplots(figsize=size)
+
+    if isinstance(x, list) and isinstance(y, list) and isinstance(label, list):
+        for i in range(len(x)):
+            plt.scatter(x[i],
+                     y[i],
+                     # line_color=line_color,
+                     edgecolor=edge_color,
+                     marker=marker,
+                     label=label[i]
+                     )
+    else:
+        plt.scatter(x,
+                 y,
+                 c=marker_color,
+                 marker=marker,
+                 edgecolor=edge_color,
+                 label=label,
+                 )
+
+    plt.legend()
+    ax.set_title(f'{title}')
+    if xlim is not None:
+        ax.set_xlim(xlim)
+    if ylim is not None:
+        ax.set_ylim(ylim)
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    plt.show() if show else None
+    return fig, ax
