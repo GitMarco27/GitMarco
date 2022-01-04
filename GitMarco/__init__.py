@@ -9,4 +9,4 @@ from GitMarco.utils import *
 import logging
 
 logging.basicConfig(format='GitMarco - %(levelname)s: %(message)s',
-                    level=logging.INFO)
+                    level=logging.WARNING)
