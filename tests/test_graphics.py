@@ -1,6 +1,6 @@
 import numpy as np
 from GitMarco.graphics.plotly import Scatter3D
-from GitMarco.graphics.matplotlib import validation_plot, plot_2d, scatter_2d
+from GitMarco.graphics.matplotlib import validation_plot, plot_2d, scatter_2d, circle
 
 
 def test_scatter_3d():
@@ -34,3 +34,8 @@ def test_scatter_2d():
     x = [np.random.rand(1000), np.random.rand(1000)]
     y = [x[0]-1, x[1]+1]
     scatter_2d(x, y, show=False, label=['1', '2'])
+
+
+def test_circle():
+    crc = circle(show=False, r=2, c=(1, 0), n=20)
+

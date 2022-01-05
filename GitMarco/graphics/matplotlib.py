@@ -128,3 +128,25 @@ def scatter_2d(
     ax.set_ylabel(ylabel)
     plt.show() if show else None
     return fig, ax
+
+
+def circle(
+        n: int = 400,
+        r: float = 0.2,
+        c: tuple = (0.5, 0.),
+        show: bool = False,
+) -> np.ndarray:
+
+    theta = np.linspace(0, 2 * np.pi, n)
+    radius = r
+    # Generating x and y data
+    x = radius * np.cos(theta) + c[0]
+    y = radius * np.sin(theta) + c[1]
+
+    if show:
+        plt.plot(x, y)
+        plt.axis('equal')
+        plt.title('Circle')
+        plt.show()
+
+    return np.expand_dims(np.stack((x, y,), axis=1), axis=0)

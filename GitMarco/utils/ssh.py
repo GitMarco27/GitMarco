@@ -55,5 +55,5 @@ def ssh_command(
 
 if __name__ == '__main__':
     print(os.listdir())
-    scp('marco@192.168.XX.YY', 'basic.py', 'DELETEME.py', port=2204)
-    ssh_command('marco@192.168.XX.YY', port=2204, command='rm -r DELETEME.py; ls')
+    # scp('marco@192.168.XX.YY', 'basic.py', 'DELETEME.py', port=2204)
+    # ssh_command('marco@192.168.XX.YY', port=2204, command='rm -r DELETEME.py; ls')
