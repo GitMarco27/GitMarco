@@ -1,2 +1,3 @@
 # GitMarco
-@TODO: create a basic readme and customize the repo home-page
+![example workflow](https://img.shields.io/github/license/GitMarco27/GitMarco)
+![example workflow](https://img.shields.io/github/checks-status/GitMarco27/GitMarco/master)
