@@ -1,6 +1,12 @@
 from GitMarco.tf import utils, metrics, basic
 import numpy as np
 
+from GitMarco.tf.utils import limit_memory
+
+
+def test_limit_memory():
+    limit_memory()
+
 
 def test_random_dataset():
     utils.random_dataset()
@@ -17,3 +23,8 @@ def test_basic_dense_model():
                                     output_shape=1,
                                     optimizer='adadelta')
     model.summary()
+
+
+
+
+
