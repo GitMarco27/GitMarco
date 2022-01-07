@@ -12,7 +12,9 @@ GitMarco/statistics/__init__.py
 GitMarco/statistics/metrics.py
 GitMarco/tf/__init__.py
 GitMarco/tf/basic.py
+GitMarco/tf/losses.py
 GitMarco/tf/metrics.py
+GitMarco/tf/pointnet.py
 GitMarco/tf/utils.py
 GitMarco/torch/__init__.py
 GitMarco/torch/losses.py
@@ -20,3 +22,5 @@ GitMarco/torch/utils.py
 GitMarco/utils/__init__.py
 GitMarco/utils/basic.py
 GitMarco/utils/files.py
+GitMarco/utils/ssh.py
+GitMarco/utils/training.py

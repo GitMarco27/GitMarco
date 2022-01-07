@@ -9,7 +9,7 @@ def test_scatter_3d():
     plot = Scatter3D(x=x,
                      y=y,
                      z=z,)
-    fig = plot.plot(show=False)
+    fig = plot.plot(show=False, color=z)
 
 
 def test_validation_plot():
