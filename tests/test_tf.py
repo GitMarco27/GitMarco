@@ -1,7 +1,7 @@
 from GitMarco.tf import utils, metrics, basic
 import numpy as np
 
-from GitMarco.tf.losses import chamfer_distance
+from GitMarco.tf.losses import chamfer_distance, euclidian_dist_loss
 from GitMarco.tf.pointnet import Pointnet
 from GitMarco.tf.utils import limit_memory, random_dataset
 
@@ -45,3 +45,10 @@ def test_pointnet():
     model.summary()
     model.compile(loss='mse', optimizer='adam')
     model.evaluate(data, field)
+
+
+def test_euclidean_distance():
+    x = utils.random_dataset(shape=(32, 1024, 3))
+    y = utils.random_dataset(shape=(32, 1024, 3))
+    euclidian_dist_loss(x, y, correction=True)
+
