@@ -69,7 +69,8 @@ def exp_dim(global_feature, num_points):
 
 
 class Pointnet(object):
-    def __init__(self, n_points: int = 1024,
+    def __init__(self,
+                 n_points: int = 1024,
                  setup: str = 'seg',  # class - seg - both
                  input_setup: str = 'grid',  # grid - both
                  n_fields: int = 1,
