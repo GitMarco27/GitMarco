@@ -82,6 +82,7 @@ class Pointnet(object):
                  feature_transform: bool = True,
                  dropout_rate: float = 0.3,
                  out_class_activation: str = 'relu',
+                 out_reg_activation: str = 'sigmoid',
                  class_neurons: tuple = (512, 256),
                  seg_kernels: tuple = (512, 256, 128, 128),
                  ):
@@ -98,6 +99,7 @@ class Pointnet(object):
         self.feature_transform = feature_transform
         self.dropout_rate = dropout_rate
         self.out_class_activation = out_class_activation
+        self.out_reg_activation = out_reg_activation
         self.class_neurons = class_neurons
         self.seg_kernels = seg_kernels
 
@@ -139,7 +141,7 @@ class Pointnet(object):
             x = conv_bn(x, self.seg_kernels[3])
             outputs = tf.keras.layers.Dense(self.n_fields,
                                             name="output_fields",
-                                            activation='sigmoid')(x)
+                                            activation=self.out_reg_activation)(x)
 
             if self.input_setup == 'grid':
                 self.model = tf.keras.Model(inputs=inputs, outputs=outputs, name="PointNet")
@@ -175,7 +177,7 @@ class Pointnet(object):
             x = conv_bn(x, self.seg_kernels[3])
             outputs_seg = tf.keras.layers.Dense(self.n_fields,
                                                 name="output_fields",
-                                                activation='sigmoid')(x)
+                                                activation=self.out_reg_activation)(x)
             x = dense_bn(y, self.class_neurons[0])
             x = tf.keras.layers.Dropout(self.dropout_rate)(x)
             x = dense_bn(x, self.class_neurons[1])
