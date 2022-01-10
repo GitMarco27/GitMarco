@@ -35,8 +35,12 @@ class Scatter3D(object):
              n_ticks: int = 10,
              margin=None,
              alpha: float = 0.8,
-             show: bool = False):
+             show: bool = False,
+             cmin: float = 0.,
+             cmax: float = 1.):
         """
+        :param cmax: maximum value of the colorbar
+        :param cmin: minimum value of the colorbar
         :param alpha: alpha
         :param margin: scene margins
         :param n_ticks: number of ticks on every axis
@@ -71,6 +75,8 @@ class Scatter3D(object):
                                                        colorscale='Turbo',
                                                        opacity=alpha,
                                                        colorbar=dict(thickness=20),
+                                                       cmin=cmin,
+                                                       cmax=cmax,
                                                        # line=dict(width=0.5,
                                                        #          color='black')
                                                        ))],
