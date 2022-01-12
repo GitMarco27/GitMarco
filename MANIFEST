@@ -22,5 +22,6 @@ GitMarco/torch/utils.py
 GitMarco/utils/__init__.py
 GitMarco/utils/basic.py
 GitMarco/utils/files.py
+GitMarco/utils/geometric.py
 GitMarco/utils/ssh.py
 GitMarco/utils/training.py
