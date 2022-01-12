@@ -8,18 +8,15 @@ class Scatter3D(object):
                  y: np.ndarray,
                  z: np.ndarray, ):
         """
-        :param x: np.ndarray - data are reshaped with (-1, 1)
-        :param y: np.ndarray - data are reshaped with (-1, 1)
-        :param z: np.ndarray - data are reshaped with (-1, 1)
+        :param x: np.ndarray
+        :param y: np.ndarray
+        :param z: np.ndarray
 
-        Create a 3D scatter plot with plotly
+        Create a custom 3D scatter plot with plotly
         """
         self.x = x
         self.y = y
         self.z = z
-        self.grid = np.hstack((self.x.reshape(-1, 1),
-                               self.y.reshape(-1, 1),
-                               self.z.reshape(-1, 1)))
 
     def plot(self,
              color: np.ndarray = None,
@@ -37,8 +34,11 @@ class Scatter3D(object):
              alpha: float = 0.8,
              show: bool = False,
              cmin: float = 0.,
-             cmax: float = 1.):
+             cmax: float = 1.,
+             colorscale: str = 'Turbo'):
+
         """
+        :param colorscale: color scale
         :param cmax: maximum value of the colorbar
         :param cmin: minimum value of the colorbar
         :param alpha: alpha
@@ -55,7 +55,7 @@ class Scatter3D(object):
         :param legend_title: legend_title
         :param size: size of the figure
         :param show: show (or not) the figure
-        :return:
+        :return fig: figure instance
 
         Create the 3d scatter plot
         """
@@ -72,7 +72,7 @@ class Scatter3D(object):
                                            mode='markers',
                                            marker=dict(size=marker_size,
                                                        color=color,
-                                                       colorscale='Turbo',
+                                                       colorscale=colorscale,
                                                        opacity=alpha,
                                                        colorbar=dict(thickness=20),
                                                        cmin=cmin,
@@ -100,3 +100,79 @@ class Scatter3D(object):
 
         fig.show() if show else None
         return fig
+
+
+def mesh_3d(
+         x, y, z, i, j, k,
+         color: np.ndarray = None,
+         title: str = '',
+         xlabel: str = '',
+         ylabel: str = '',
+         legend_title: str = '',
+         size: tuple = (800, 600),
+         x_range=None,
+         y_range=None,
+         z_range=None,
+         n_ticks: int = 10,
+         margin=None,
+         show: bool = False,
+         cmin: float = 0.,
+         cmax: float = 1.,
+         colorscale: str = 'Turbo',
+         flatshading: bool = True,
+         showscale: bool = False,
+         paper_bgcolor: str = 'rgb(1,1,1)',
+         title_x: float = .5,
+         font_color: str = 'white',
+         show_axis: bool = False
+         ):
+
+    if margin is None:
+        margin = dict(r=10, l=10, b=10, t=50)
+    if z_range is None:
+        z_range = [-10, 10]
+    if y_range is None:
+        y_range = [-10, 10]
+    if x_range is None:
+        x_range = [-10, 10]
+
+    mesh3d = go.Mesh3d(
+        x=x,
+        y=y,
+        z=z,
+        i=i,
+        j=j,
+        k=k,
+        flatshading=flatshading,
+        colorscale=colorscale,
+        intensity=color,
+        name=title,
+        showscale=showscale,
+        cmax=cmax,
+        cmin=cmin,
+    )
+
+    layout = go.Layout(
+        paper_bgcolor=paper_bgcolor,
+        xaxis_title=xlabel,
+        yaxis_title=ylabel,
+        legend_title=legend_title,
+        title_x=title_x,
+        title_text=title,
+        font_color=font_color,
+        width=size[0],
+        height=size[1],
+        # scene_camera=dict(eye=dict(x=1.25, y=-1.25, z=1)),
+        scene_xaxis_visible=show_axis,
+        scene_yaxis_visible=show_axis,
+        scene_zaxis_visible=show_axis,
+        scene=dict(
+            xaxis=dict(nticks=n_ticks, range=x_range, ),
+            yaxis=dict(nticks=n_ticks, range=y_range, ),
+            zaxis=dict(nticks=n_ticks, range=z_range, ), ),
+        margin=margin
+    )
+
+    fig = go.Figure(data=[mesh3d], layout=layout)
+    fig.show() if show else None
+    return fig
