@@ -43,7 +43,7 @@ def plot_2d(
         xlabel: str = 'x',
         ylabel: str = 'y',
         line_color: str = 'k',
-        line_width: int = 5,
+        line_width: int = 1,
         xlim: tuple = None,
         ylim: tuple = None,
 
@@ -102,20 +102,20 @@ def scatter_2d(
     if isinstance(x, list) and isinstance(y, list) and isinstance(label, list):
         for i in range(len(x)):
             plt.scatter(x[i],
-                     y[i],
-                     # line_color=line_color,
-                     edgecolor=edge_color,
-                     marker=marker,
-                     label=label[i]
-                     )
+                        y[i],
+                        # line_color=line_color,
+                        edgecolor=edge_color,
+                        marker=marker,
+                        label=label[i]
+                        )
     else:
         plt.scatter(x,
-                 y,
-                 c=marker_color,
-                 marker=marker,
-                 edgecolor=edge_color,
-                 label=label,
-                 )
+                    y,
+                    c=marker_color,
+                    marker=marker,
+                    edgecolor=edge_color,
+                    label=label,
+                    )
 
     plt.legend()
     ax.set_title(f'{title}')
@@ -136,7 +136,6 @@ def circle(
         c: tuple = (0.5, 0.),
         show: bool = False,
 ) -> np.ndarray:
-
     theta = np.linspace(0, 2 * np.pi, n)
     radius = r
     # Generating x and y data
