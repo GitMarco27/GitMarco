@@ -5,6 +5,7 @@ from GitMarco.statistics import *
 from GitMarco.tf import *
 from GitMarco.torch import *
 from GitMarco.utils import *
+from GitMarco.pipes import *
 
 import logging
 

@@ -9,7 +9,8 @@ setup(
               'GitMarco.statistics',
               'GitMarco.graphics',
               'GitMarco.torch',
-              'GitMarco.notebooks'],  # Chose the same as "name"
+              'GitMarco.notebooks',
+              'GitMarco.pipes'],  # Chose the same as "name"
     version='v0.0.16',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='An Engineering, Data Science and Deep Learning python package',  # Give a short description about your library
