@@ -14,6 +14,7 @@ GitMarco/tf/__init__.py
 GitMarco/tf/basic.py
 GitMarco/tf/losses.py
 GitMarco/tf/metrics.py
+GitMarco/tf/optimization.py
 GitMarco/tf/pointnet.py
 GitMarco/tf/utils.py
 GitMarco/torch/__init__.py

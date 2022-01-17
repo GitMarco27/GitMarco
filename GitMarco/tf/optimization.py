@@ -44,7 +44,11 @@ class GradientOptimizer(object):
         self.max_values = standard_df.describe().T['max'][:df.shape[1] - n_labels].to_numpy()
 
         self.learning_rate = learning_rate if scheduler is None else learning_rate
+
         self.loss = loss
+        loss.min_values = self.min_values
+        loss.max_values = self.max_values
+
         self.iterations = iterations
         self.log = log
         self.log_step = log_step
@@ -126,7 +130,7 @@ class GradientOptimizer(object):
 
 
 class OptiLoss(object):
-    def __init__(self, params=None):
+    def __init__(self, params: dict = None):
         if params is None:
             params = {}
         for key in params:
