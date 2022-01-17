@@ -29,6 +29,8 @@ setup(
         'torchaudio',
         'sklearn',
         'pandas',
+        'scipy',
+        'tqdm'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
