@@ -88,7 +88,7 @@ def test_gradient_optimizer():
         optimizer.history()
         optimizer.get_best_sample()
         optimizer.get_results()
-        print(optimizer.compare_bounds())
+        optimizer.compare_bounds()
         optimizer.reset()
         optimizer.iterations = 100
         optimizer.run()
