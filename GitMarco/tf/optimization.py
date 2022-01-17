@@ -24,6 +24,7 @@ class GradientOptimizer(object):
                  optimizer: str = 'Adam',
                  fit_scaler: bool = True,
                  ):
+
         if isinstance(model, str):
             if os.path.exists(model):
                 self.model = tf.keras.models.load_model(model)
@@ -46,8 +47,11 @@ class GradientOptimizer(object):
         self.learning_rate = learning_rate if scheduler is None else learning_rate
 
         self.loss = loss
-        loss.min_values = self.min_values
-        loss.max_values = self.max_values
+        self.loss.update_params(dict(
+            min_values=self.min_values,
+            max_values=self.max_values,
+            model=self.model
+        ))
 
         self.iterations = iterations
         self.log = log
@@ -131,6 +135,9 @@ class GradientOptimizer(object):
 
 class OptiLoss(object):
     def __init__(self, params: dict = None):
+        self.update_params(params)
+
+    def update_params(self, params: dict = None):
         if params is None:
             params = {}
         for key in params:

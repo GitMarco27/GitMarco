@@ -58,7 +58,7 @@ def test_euclidean_distance():
 
 
 class Loss(OptiLoss):
-    def __init__(self, params):
+    def __init__(self, params=None):
         super(Loss, self).__init__(params)
 
     def __call__(self, sample):
@@ -77,7 +77,7 @@ def test_gradient_optimizer():
             model,
             df,
             StandardScaler(),
-            Loss(dict(model=model)),
+            Loss(),
             n_features=2,
             n_labels=2,
             iterations=10
