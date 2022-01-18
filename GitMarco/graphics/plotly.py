@@ -4,13 +4,14 @@ import numpy as np
 
 class Scatter3D(object):
     def __init__(self,
-                 x: np.ndarray,
-                 y: np.ndarray,
-                 z: np.ndarray, ):
+                 x,
+                 y,
+                 z,
+                 ):
         """
-        :param x: np.ndarray
-        :param y: np.ndarray
-        :param z: np.ndarray
+        :param x: np.ndarray or list
+        :param y: np.ndarray or list
+        :param z: np.ndarray or list
 
         Create a custom 3D scatter plot with plotly
         """
@@ -19,7 +20,7 @@ class Scatter3D(object):
         self.z = z
 
     def plot(self,
-             color: np.ndarray = None,
+             color=None,
              title: str = '',
              xlabel: str = '',
              ylabel: str = '',
@@ -31,6 +32,8 @@ class Scatter3D(object):
              z_range=None,
              n_ticks: int = 10,
              margin=None,
+             line_width: float = .0,
+             line_color: str = 'black',
              alpha: float = 0.8,
              show: bool = False,
              cmin: float = 0.,
@@ -38,6 +41,8 @@ class Scatter3D(object):
              colorscale: str = 'Turbo'):
 
         """
+        :param line_color: line color
+        :param line_width: line width
         :param colorscale: color scale
         :param cmax: maximum value of the colorbar
         :param cmin: minimum value of the colorbar
@@ -68,18 +73,35 @@ class Scatter3D(object):
             y_range = [-1, 1]
         if x_range is None:
             x_range = [-1, 1]
-        fig = go.Figure(data=[go.Scatter3d(x=self.x, y=self.y, z=self.z,
-                                           mode='markers',
-                                           marker=dict(size=marker_size,
-                                                       color=color,
-                                                       colorscale=colorscale,
-                                                       opacity=alpha,
-                                                       colorbar=dict(thickness=20),
-                                                       cmin=cmin,
-                                                       cmax=cmax,
-                                                       # line=dict(width=0.5,
-                                                       #          color='black')
-                                                       ))],
+
+        if isinstance(self.x, list) and isinstance(self.y, list) and isinstance(self.z, list):
+            data = [go.Scatter3d(x=self.x[i], y=self.y[i], z=self.z[i],
+                                 mode='markers',
+                                 marker=dict(size=marker_size,
+                                             color=color[i],
+                                             colorscale=colorscale,
+                                             opacity=alpha,
+                                             colorbar=dict(thickness=20),
+                                             cmin=cmin,
+                                             cmax=cmax,
+                                             line=dict(width=line_width,
+                                                       color=line_color)
+                                             )) for i in range(len(self.x))]
+        else:
+            data = [go.Scatter3d(x=self.x, y=self.y, z=self.z,
+                                 mode='markers',
+                                 marker=dict(size=marker_size,
+                                             color=color,
+                                             colorscale=colorscale,
+                                             opacity=alpha,
+                                             colorbar=dict(thickness=20),
+                                             cmin=cmin,
+                                             cmax=cmax,
+                                             line=dict(width=line_width,
+                                                       color=line_color)
+                                             ))]
+
+        fig = go.Figure(data=data,
                         layout=go.Layout(
                             width=size[0],
                             height=size[1],
@@ -103,30 +125,29 @@ class Scatter3D(object):
 
 
 def mesh_3d(
-         x, y, z, i, j, k,
-         color: np.ndarray = None,
-         title: str = '',
-         xlabel: str = '',
-         ylabel: str = '',
-         legend_title: str = '',
-         size: tuple = (800, 600),
-         x_range=None,
-         y_range=None,
-         z_range=None,
-         n_ticks: int = 10,
-         margin=None,
-         show: bool = False,
-         cmin: float = 0.,
-         cmax: float = 1.,
-         colorscale: str = 'Turbo',
-         flatshading: bool = True,
-         showscale: bool = False,
-         paper_bgcolor: str = 'rgb(1,1,1)',
-         title_x: float = .5,
-         font_color: str = 'white',
-         show_axis: bool = False
-         ):
-
+        x, y, z, i, j, k,
+        color: np.ndarray = None,
+        title: str = '',
+        xlabel: str = '',
+        ylabel: str = '',
+        legend_title: str = '',
+        size: tuple = (800, 600),
+        x_range=None,
+        y_range=None,
+        z_range=None,
+        n_ticks: int = 10,
+        margin=None,
+        show: bool = False,
+        cmin: float = 0.,
+        cmax: float = 1.,
+        colorscale: str = 'Turbo',
+        flatshading: bool = True,
+        showscale: bool = False,
+        paper_bgcolor: str = 'rgb(1,1,1)',
+        title_x: float = .5,
+        font_color: str = 'white',
+        show_axis: bool = False
+):
     if margin is None:
         margin = dict(r=10, l=10, b=10, t=50)
     if z_range is None:

@@ -4,12 +4,13 @@ from GitMarco.graphics.matplotlib import validation_plot, plot_2d, scatter_2d, c
 
 
 def test_scatter_3d():
-    x = y = np.arange(1000)
-    z = np.random.rand(1000)
+    x = y = [np.arange(1000)]*2
+    z = [np.random.rand(1000), np.random.rand(1000)-1]
     plot = Scatter3D(x=x,
                      y=y,
                      z=z, )
-    fig = plot.plot(show=True, color=z, cmax=1, x_range=[0, 1000], y_range=[0, 1000])
+    fig = plot.plot(show=False, color=z, cmax=1, x_range=[0, 1000], y_range=[0, 1000], cmin=-1)
+    # fig.show()
 
 
 def test_mesh_3d():
