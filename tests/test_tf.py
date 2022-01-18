@@ -2,7 +2,7 @@ from GitMarco.tf import utils, metrics, basic
 import numpy as np
 from GitMarco.tf.losses import chamfer_distance, euclidian_dist_loss
 from GitMarco.tf.optimization import OptiLoss, GradientOptimizer
-from GitMarco.tf.pointnet import Pointnet
+from GitMarco.tf.pointnet import Pointnet, PointnetAe
 from GitMarco.tf.utils import limit_memory, random_dataset
 import pandas as pd
 from GitMarco.tf.basic import basic_dense_model
@@ -49,6 +49,28 @@ def test_pointnet():
     model.summary()
     model.compile(loss='mse', optimizer='adam')
     model.evaluate(data, field)
+
+
+def test_pointnet_ae():
+    data = random_dataset(shape=(32, 400, 3))
+    global_v = random_dataset(shape=(32, 1))
+    global_v_2 = random_dataset(shape=(32, 1))
+    local_v = random_dataset(shape=(32, 400, 3))
+
+    model = PointnetAe(n_geometry_points=data.shape[1],
+                       n_global_variables=2,
+                       n_local_variables=3,
+                       type_decoder='cnn',
+                       n_cnn_dec_layer=4,
+                       dfferent_out_for_globals=True,
+                       cnn_dec_filters=[64, 32, 32, 16]
+                       )
+
+    model = model.create_model()
+    model.summary()
+    model.compile(loss=[chamfer_distance, ['mse', 'mse'], 'mse'], optimizer='adam')
+    with tf.device('CPU:0'):
+        model.evaluate(data, [data, [global_v, global_v_2], local_v])
 
 
 def test_euclidean_distance():
