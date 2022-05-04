@@ -1,5 +1,10 @@
+import os
+import random
+
 import numpy as np
 import pandas as pd
+import pymeshlab
+import tqdm
 from scipy.interpolate import LinearNDInterpolator
 
 
@@ -162,3 +167,46 @@ def norm_pointclouds(pointclouds: list) -> list:
     for pointcloud in pointclouds: normed.append(norm(pointcloud))
     return normed
 
+
+def remesh_stl_to_target_faces(
+        source: str,
+        dest: str,
+        target: int,
+) -> None:
+    ms = pymeshlab.MeshSet()
+    ms.load_new_mesh(source)
+    ms.meshing_decimation_quadric_edge_collapse(targetfacenum=target)
+    ms.save_current_mesh(dest)
+
+
+def remesh_stl_files_to_min_faces(
+        source_path: str,
+        dest_path: str,
+) -> None:
+    if not os.path.exists(source_path):
+        raise FileNotFoundError('Source path does not exist')
+    if not os.path.exists(dest_path):
+        os.mkdir(dest_path)
+
+    stl_files = [file for file in os.listdir(source_path) if '.stl' in file]
+
+    assert len(stl_files) > 0, ValueError('No stl files detected')
+
+    faces_number = []
+    for stl_file in tqdm.tqdm(stl_files):
+        file_path = os.path.join(source_path, stl_file)
+        ms = pymeshlab.MeshSet()
+        ms.load_new_mesh(file_path)
+        faces_number.append(ms.current_mesh().face_number())
+
+    target = min(faces_number)
+    print(f'Remeshing to minimum number of faces: {target}')
+    for stl_file in tqdm.tqdm(stl_files):
+        file_path = os.path.join(source_path, stl_file)
+        new_file_path = os.path.join(dest_path, stl_file)
+
+        remesh_stl_to_target_faces(
+            source=file_path,
+            dest=new_file_path,
+            target=target
+        )
